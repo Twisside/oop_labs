@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using main.c_.uni.laboratory.labtwo.Classes;
 
 namespace main.c_.uni.laboratory.labtwo;
 
@@ -12,6 +13,8 @@ class Labtwo
     private static int f_switch = 0;
     private static string s_commands;
     private static int s_switch = 0;
+    private static List<Faculty> facultyList;
+
     static void Main(String[] args) // im stupid, i don't know what i'm doing, i'm trying my best
     {
         Console.WriteLine("Welcome to the Student Manager!");
@@ -28,21 +31,26 @@ class Labtwo
         {
             do
             {
-                Console.Write("Your input>");
+                Console.Write("Your operation input>");
                 entry = Console.ReadLine();
                 switch (entry)
                 {
 
                     case "g":
-                        Console.WriteLine("Available commands:");
-                        Console.WriteLine("bk - back to previous choice"); // i have nothing to add yet --------------------
+                        Console.WriteLine("Available general commands:");
+                        Console.WriteLine(
+                            "bk - back to previous choice"); // i have nothing to add yet --------------------
+                        Console.WriteLine("cf - create faculty");
                         do
                         {
                             Console.Write("Your input>");
                             g_commands = Console.ReadLine();
                             switch (g_commands)
                             {
-                                case "": // add commands
+                                case "cf": // add commands
+                                    Faculty faculty = new Faculty();
+                                    facultyList.Add(faculty);
+                                    faculty.create_faculty();
                                     break;
                                 case "bk":
                                     continue;
@@ -52,13 +60,15 @@ class Labtwo
                                     break;
                             }
                         } while (g_switch == 1);
+
                         switch_loop_brake = 0;
                         break;
-                    
+
                     case "f":
-                        
-                        Console.WriteLine("Available commands:");
-                        Console.WriteLine("bk - back to previous choice"); // i have nothing to add yet --------------------
+
+                        Console.WriteLine("Available faculty commands:");
+                        Console.WriteLine(
+                            "bk - back to previous choice"); // i have nothing to add yet --------------------
                         do
                         {
                             Console.Write("Your input>");
@@ -75,12 +85,14 @@ class Labtwo
                                     break;
                             }
                         } while (f_switch == 1);
+
                         switch_loop_brake = 0;
                         break;
-                    
+
                     case "s":
-                        Console.WriteLine("Available commands:");
-                        Console.WriteLine("bk - back to previous choice"); // i have nothing to add yet --------------------
+                        Console.WriteLine("Available student commands:");
+                        Console.WriteLine(
+                            "bk - back to previous choice"); // i have nothing to add yet --------------------
                         do
                         {
                             Console.Write("Your input>");
@@ -97,6 +109,7 @@ class Labtwo
                                     break;
                             }
                         } while (s_switch == 1);
+
                         switch_loop_brake = 0;
                         break;
                     case "q":
@@ -109,11 +122,9 @@ class Labtwo
                         break;
                 }
             } while (switch_loop_brake == 1);
-
-
         }
-        
-        
-
     }
 }
+
+
+       

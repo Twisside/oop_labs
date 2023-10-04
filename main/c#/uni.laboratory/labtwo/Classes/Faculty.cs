@@ -1,13 +1,15 @@
-﻿namespace main.c_.uni.laboratory.labtwo.Classes;
+﻿using System.Reflection.PortableExecutable;
+
+namespace main.c_.uni.laboratory.labtwo.Classes;
 
 public class Faculty
 {
-    private static String name;
-    private static String abbreviation;
-    private static List<String> students;
-    private static StudyField studyField;
+    String name;
+    String abbreviation;
+    private static List<Student> localStudents;
+    StudyField studyField;
 
-    static void create_faculty()
+    public void create_faculty()
     {
         int ans_check = 0;
         do
@@ -36,39 +38,31 @@ public class Faculty
         // i still have no idea what the studyField is supposed to be
     }
     
-    static void add_student(String stdID) 
+    void add_student(Student student) 
     {
-        try
-        {
-            students.Add(stdID);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Not a valid student ID");
-            throw;
-        }
+        localStudents.Add(student);
+        student.enrollments.Add(this);
+        
     }
 
-    static void list_students()
+    void list_students() 
     {
-        Student student = new Student();
-        for (int i = 0; i < students.Count; i++)
+        for (int i = 0; i < localStudents.Count; i++)
         {
-            if (students[i] == student.outsideID && !student.outsidegGraduate)
+            if (!localStudents[i].outsidegGraduate)
             {
-                Console.WriteLine($"{student.firstName} {student.lastName}");
+                Console.WriteLine($"{localStudents[i].firstName} {localStudents[i].lastName}");
             }
         }
     }
     
-    static void list_graduates()
+    void list_graduates()
     {
-        Student student = new Student();
-        for (int i = 0; i < students.Count; i++)
+        for (int i = 0; i < localStudents.Count; i++)
         {
-            if (students[i] == student.outsideID && student.outsidegGraduate)
+            if (!localStudents[i].outsidegGraduate)
             {
-                Console.WriteLine($"{student.firstName} {student.lastName}");
+                Console.WriteLine($"{localStudents[i].firstName} {localStudents[i].lastName}");
             }
         }
     }

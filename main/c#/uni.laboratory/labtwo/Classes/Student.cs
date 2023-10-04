@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-
-namespace main.c_.uni.laboratory.labtwo.Classes;
+﻿namespace main.c_.uni.laboratory.labtwo.Classes;
 
 public class Student
 {
@@ -11,18 +9,26 @@ public class Student
     private static DateTime localDateOfBirth;
     private static String ID;
     
-    public String firstName;
-    public String lastName;
-    public String email;
-    public DateTime enrolmentDate;
-    public DateTime dateOfBirth;
+    public String firstName = localFirstName;
+    public String lastName = localLastName;
+    public String email = localEmail;
+    public DateTime enrolmentDate = localEnrolmentDate;
+    public DateTime dateOfBirth = localDateOfBirth;
     public bool outsidegGraduate = graduate;
-    
+    public List<Faculty> enrollments;
+
     public String outsideID = ID;
     public static bool graduate = false;
-    public static DateTime graduateDate;
 
-    static void create_student()
+
+    void check_faculty_enroll()
+    {
+        for (int i = 0; i < enrollments.Count; i++)
+        {
+            Console.WriteLine($"{enrollments[i]}");
+        }
+    }
+    void create_student()
     {
         int ans_check = 0;
         do
@@ -78,7 +84,7 @@ public class Student
         ID = Console.ReadLine();
     }
     
-    static void show_info()
+    void show_info()
     {
         Console.WriteLine($"First name: {localFirstName}");
         Console.WriteLine($"Last name: {localLastName}");
