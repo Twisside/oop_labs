@@ -1,6 +1,6 @@
 ﻿namespace main.c_.uni.laboratory.labtwo.Classes;
 
-public enum StudyField
+public enum StudyField // what purpose does it serve????
 {
     MechanicalEngineering = 0,
     SoftwareEngineering = 1,
