@@ -1,19 +1,18 @@
-﻿using System.Runtime.CompilerServices;
-using main.c_.uni.laboratory.labtwo.Classes;
+﻿using main.c_.uni.laboratory.labtwo.Classes;
 
 namespace main.c_.uni.laboratory.labtwo;
 
 class Labtwo
 {
-    private static string entry;
-    private static int switch_loop_brake = 0;
-    private static string g_commands;
-    private static int g_switch = 0;
-    private static string f_commands;
-    private static int f_switch = 0;
-    private static string s_commands;
-    private static int s_switch = 0;
-    private static List<Faculty> facultyList;
+    private static string? _entry;
+    private static int _switchLoopBrake;
+    private static string? _gCommands;
+    private static int _gSwitch;
+    private static string? _fCommands;
+    private static int _fSwitch;
+    private static string? _sCommands;
+    private static int _sSwitch;
+    
 
     static void Main(String[] args) // im stupid, i don't know what i'm doing, i'm trying my best
     {
@@ -21,107 +20,118 @@ class Labtwo
         Console.WriteLine("Here are the start commands:");
         Console.WriteLine("g - general operations");
         Console.WriteLine("f - faculty operations");
-        Console.WriteLine("s - student operations");
         Console.WriteLine("q - quit program");
-        Console.WriteLine("Type in 'help' to see command details.");
 
 
 
-        while (entry != "q")
+        while (_entry != "q")
         {
             do
             {
                 Console.Write("Your operation input>");
-                entry = Console.ReadLine();
-                switch (entry)
+                _entry = Console.ReadLine();
+                switch (_entry)
                 {
 
                     case "g":
                         Console.WriteLine("Available general commands:");
-                        Console.WriteLine(
-                            "bk - back to previous choice"); // i have nothing to add yet --------------------
+                        Console.WriteLine("bk - back to previous choice"); // i have nothing to add yet --------------------
                         Console.WriteLine("cf - create faculty");
+                        Console.WriteLine("ssf - search faculty that the student belongs to");
+                        Console.WriteLine("uf - display university faculties");
                         do
                         {
                             Console.Write("Your input>");
-                            g_commands = Console.ReadLine();
-                            switch (g_commands)
+                            _gCommands = Console.ReadLine();
+                            switch (_gCommands)
                             {
-                                case "cf": // add commands
+                                case "cf":
                                     Faculty faculty = new Faculty();
-                                    facultyList.Add(faculty);
                                     faculty.create_faculty();
+                                    Student._facultyList?.Add(faculty);
+                                    _gSwitch = 0;
                                     break;
+                                case "ssf":
+                                    Student.check_faculty_enroll();
+                                    _gSwitch = 0;
+                                    break;
+                                case "uf":
+                                    for (int i = 0; i < Student._facultyList?.Count; i++)
+                                    {
+                                        Console.WriteLine($"{Student._facultyList[i]}");
+                                    }
+                                    _gSwitch = 0;
+                                    break;
+                                
                                 case "bk":
+                                    _gSwitch = 0;
                                     continue;
                                 default:
                                     Console.WriteLine("Invalid command. Try again.");
-                                    g_switch = 1;
+                                    _gSwitch = 1;
                                     break;
                             }
-                        } while (g_switch == 1);
+                        } while (_gSwitch == 1);
 
-                        switch_loop_brake = 0;
+                        _switchLoopBrake = 0;
                         break;
 
                     case "f":
 
                         Console.WriteLine("Available faculty commands:");
-                        Console.WriteLine(
-                            "bk - back to previous choice"); // i have nothing to add yet --------------------
+                        Console.WriteLine("bk - back to previous choice");
+                        Console.WriteLine("as - add student and add to faculty");
+                        Console.WriteLine("de - display enrolled students");
+                        Console.WriteLine("dg - display graduated students");
+                        Console.WriteLine("btf - tell if a student belongs to faculty");
+                        
                         do
                         {
                             Console.Write("Your input>");
-                            f_commands = Console.ReadLine();
-                            switch (f_commands)
+                            _fCommands = Console.ReadLine();
+                            switch (_fCommands)
                             {
-                                case "": // add commands
+                                case "as":
+                                    Student student = new Student();
+                                    student.create_student();
+                                    Faculty.add_student(student.outsideID);
+                                    _fSwitch = 0;
+                                    break;
+                                case "de":
+                                    Faculty.list_students();
+                                    _fSwitch = 0;
+                                    break;
+                                case "dg":
+                                    Faculty.list_graduates();
+                                    _fSwitch = 0;
+                                    break;
+                                case "btf":
+                                    Faculty.chech_student_belong();
+                                    _fSwitch = 0;
                                     break;
                                 case "bk":
+                                    _fSwitch = 0;
                                     continue;
                                 default:
                                     Console.WriteLine("Invalid command. Try again.");
-                                    f_switch = 1;
+                                    _fSwitch = 1;
                                     break;
                             }
-                        } while (f_switch == 1);
+                        } while (_fSwitch == 1);
 
-                        switch_loop_brake = 0;
+                        _switchLoopBrake = 0;
                         break;
-
-                    case "s":
-                        Console.WriteLine("Available student commands:");
-                        Console.WriteLine(
-                            "bk - back to previous choice"); // i have nothing to add yet --------------------
-                        do
-                        {
-                            Console.Write("Your input>");
-                            s_commands = Console.ReadLine();
-                            switch (s_commands)
-                            {
-                                case "": // add commands
-                                    break;
-                                case "bk":
-                                    continue;
-                                default:
-                                    Console.WriteLine("Invalid command. Try again.");
-                                    s_switch = 1;
-                                    break;
-                            }
-                        } while (s_switch == 1);
-
-                        switch_loop_brake = 0;
-                        break;
+                    
                     case "q":
-                        switch_loop_brake = 0;
+                        _switchLoopBrake = 0;
                         Environment.Exit(0);
                         break;
                     default:
                         Console.WriteLine("Invalid command. Try again.");
-                        switch_loop_brake = 1;
+                        _switchLoopBrake = 1;
                         break;
                 }
-            } while (switch_loop_brake == 1);
+            } while (_switchLoopBrake == 1);
         }
     }
 }

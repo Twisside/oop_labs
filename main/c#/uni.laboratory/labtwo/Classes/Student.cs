@@ -1,10 +1,13 @@
-﻿namespace main.c_.uni.laboratory.labtwo.Classes;
+﻿using System.Runtime.InteropServices.JavaScript;
+using System.Xml;
+
+namespace main.c_.uni.laboratory.labtwo.Classes;
 
 public class Student
 {
-    private static String localFirstName;
-    private static String localLastName;
-    private static String localEmail;
+    private static string localFirstName;
+    private static string localLastName;
+    private static string localEmail;
     private static DateTime localEnrolmentDate;
     private static DateTime localDateOfBirth;
     private static String ID;
@@ -15,20 +18,33 @@ public class Student
     public DateTime enrolmentDate = localEnrolmentDate;
     public DateTime dateOfBirth = localDateOfBirth;
     public bool outsidegGraduate = graduate;
-    public List<Faculty> enrollments;
+    public static List<Faculty>? enrollments;
+    public List<Faculty> outsideEnrollment = enrollments;
 
     public String outsideID = ID;
     public static bool graduate = false;
+    
+    public static List<Faculty>? _facultyList;
+    public static List<Student>? _studentList;
 
 
-    void check_faculty_enroll()
+    public static void check_faculty_enroll()
     {
-        for (int i = 0; i < enrollments.Count; i++)
+        Console.WriteLine("Enter student id>");
+        string? id = Console.ReadLine();
+        for (int i = 0; i < _studentList?.Count; i++)
         {
-            Console.WriteLine($"{enrollments[i]}");
+            if (_studentList[i].outsideID == id)
+            {
+                for (int j = 0; j < enrollments.Count; j++)
+                {
+                    Console.WriteLine($"{enrollments[j]}");
+                }
+            }
         }
+        
     }
-    void create_student()
+    public void create_student()
     {
         int ans_check = 0;
         do
@@ -38,8 +54,10 @@ public class Student
             switch (answ)
             {
                 case "y":
+                    ans_check = 0;
                     continue;
                 case "n":
+                    ans_check = 0;
                     return;
                 default:
                     Console.WriteLine("Invalid answer.");
@@ -82,6 +100,8 @@ public class Student
         
         Console.WriteLine("Student ID>");
         ID = Console.ReadLine();
+        
+        Console.WriteLine("Operation completed");
     }
     
     void show_info()
@@ -97,7 +117,7 @@ public class Student
     void graduate_student()
     {
         graduate = true;
-        
+        Console.WriteLine("Operation completed");
     }
 
 }

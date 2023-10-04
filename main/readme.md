@@ -6,9 +6,8 @@
 
 ### Lab 2
 
-* Add corresponding Classes
+* x Add corresponding Classes
 * Create a behavioral something something
-* interface(?)
-* error handling
-* stop crying
+* x error handling
+* x stop crying
 
