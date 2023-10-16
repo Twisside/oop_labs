@@ -1,15 +1,14 @@
-﻿using System.Reflection.PortableExecutable;
-using System.Runtime.InteropServices;
-
-namespace main.c_.uni.laboratory.labtwo.Classes;
+﻿namespace main.c_.uni.laboratory.labtwo.Classes;
 
 public class Faculty
 {
-    string? name;
-    string? abbreviation;
-    static List<Student> localStudents;
+    public string? name;
+    public string? abbreviation;
+    static List<Student> localStudents = new List<Student>();
     public List<Student> Students = localStudents;
     StudyField studyField;
+    
+    public static List<Faculty>? _facultyList = new List<Faculty>();
 
     public static void chech_student_belong()
     {
@@ -22,9 +21,9 @@ public class Faculty
         {
             if (Student._studentList[i].outsideID == id)
             {
-                for (int j = 0; j < Student._facultyList.Count; j++)
+                for (int j = 0; j < _facultyList.Count; j++)
                 {
-                    if (Student._facultyList[j].abbreviation == abr)
+                    if (_facultyList[j].abbreviation == abr)
                     {
                         for (int k = 0; k < localStudents.Count; k++)
                         {
@@ -41,7 +40,8 @@ public class Faculty
 
         if (check == 1)
         {
-            Console.WriteLine("Student id or faculty abbreviation wrong are not yet existent");
+            Console.WriteLine("Student id or faculty abbreviation wrong or not yet existent");
+            
         }
     }
     public void create_faculty()
@@ -82,12 +82,12 @@ public class Faculty
         {
             if (Student._studentList[i].outsideID == id)
             {
-                for (int j = 0; j < Student._facultyList.Count; j++)
+                for (int j = 0; j < _facultyList?.Count; j++)
                 {
-                    if (Student._facultyList[j].abbreviation == abr)
+                    if (_facultyList[j].abbreviation == abr)
                     {
-                        Student._facultyList[j].Students.Add(Student._studentList[i]);
-                        Student.enrollments.Add(Student._facultyList[j]);
+                        _facultyList[j].Students.Add(Student._studentList[i]);
+                        Student.enrollments.Add(_facultyList[j]);
                         check = 0;
                         //there definitely was a cleaner way
                     }
@@ -108,9 +108,9 @@ public class Faculty
         int check = 1;
         Console.WriteLine("Enter faculty abbreviation>");
         string? abr = Console.ReadLine();
-        for (int j = 0; j < Student._facultyList?.Count; j++)
+        for (int j = 0; j < _facultyList?.Count; j++)
         {
-            if (Student._facultyList[j].abbreviation == abr)
+            if (_facultyList[j].abbreviation == abr)
             {
                 for (int i = 0; i < localStudents.Count; i++)
                 {
@@ -133,9 +133,9 @@ public class Faculty
         int check = 1;
         Console.WriteLine("Enter faculty abbreviation>");
         string? abr = Console.ReadLine();
-        for (int j = 0; j < Student._facultyList?.Count; j++)
+        for (int j = 0; j < _facultyList?.Count; j++)
         {
-            if (Student._facultyList[j].abbreviation == abr)
+            if (_facultyList[j].abbreviation == abr)
             {
                 for (int i = 0; i < localStudents.Count; i++)
                 {

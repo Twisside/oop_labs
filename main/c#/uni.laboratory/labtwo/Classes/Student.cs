@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using System.Xml;
-
+﻿
 namespace main.c_.uni.laboratory.labtwo.Classes;
 
 public class Student
@@ -8,8 +6,8 @@ public class Student
     private static string localFirstName;
     private static string localLastName;
     private static string localEmail;
-    private static DateTime localEnrolmentDate;
-    private static DateTime localDateOfBirth;
+    private static DateTime localEnrolmentDate = new DateTime();
+    private static DateTime localDateOfBirth = new DateTime();
     private static String ID;
     
     public String firstName = localFirstName;
@@ -18,14 +16,14 @@ public class Student
     public DateTime enrolmentDate = localEnrolmentDate;
     public DateTime dateOfBirth = localDateOfBirth;
     public bool outsidegGraduate = graduate;
-    public static List<Faculty>? enrollments;
+    public static List<Faculty> enrollments = new List<Faculty>();
     public List<Faculty> outsideEnrollment = enrollments;
 
     public String outsideID = ID;
     public static bool graduate = false;
     
-    public static List<Faculty>? _facultyList;
-    public static List<Student>? _studentList;
+    
+    public static List<Student>? _studentList = new List<Student>();
 
 
     public static void check_faculty_enroll()
@@ -101,6 +99,7 @@ public class Student
         Console.WriteLine("Student ID>");
         ID = Console.ReadLine();
         
+        
         Console.WriteLine("Operation completed");
     }
     
@@ -114,10 +113,17 @@ public class Student
         
     }
     
-    void graduate_student()
+    public static void graduate_student(string id)
     {
-        graduate = true;
-        Console.WriteLine("Operation completed");
+        for (int i = 0; i < _studentList.Count; i++)
+        {
+            if (_studentList[i].outsideID == id)
+            {
+                _studentList[i].outsidegGraduate = true;
+                Console.WriteLine("Operation completed");
+            }
+        }
+        
     }
 
 }

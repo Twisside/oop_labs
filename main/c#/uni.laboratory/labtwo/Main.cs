@@ -16,16 +16,18 @@ class Labtwo
 
     static void Main(String[] args) // im stupid, i don't know what i'm doing, i'm trying my best
     {
+        
         Console.WriteLine("Welcome to the Student Manager!");
         Console.WriteLine("Here are the start commands:");
-        Console.WriteLine("g - general operations");
-        Console.WriteLine("f - faculty operations");
-        Console.WriteLine("q - quit program");
-
-
-
+        Console.WriteLine("");
+        
         while (_entry != "q")
         {
+            Console.WriteLine("g - general operations");
+            Console.WriteLine("f - faculty operations");
+            Console.WriteLine("q - quit program");
+            Console.WriteLine("");
+            
             do
             {
                 Console.Write("Your operation input>");
@@ -35,7 +37,7 @@ class Labtwo
 
                     case "g":
                         Console.WriteLine("Available general commands:");
-                        Console.WriteLine("bk - back to previous choice"); // i have nothing to add yet --------------------
+                        Console.WriteLine("bk - back to previous choice");
                         Console.WriteLine("cf - create faculty");
                         Console.WriteLine("ssf - search faculty that the student belongs to");
                         Console.WriteLine("uf - display university faculties");
@@ -48,7 +50,7 @@ class Labtwo
                                 case "cf":
                                     Faculty faculty = new Faculty();
                                     faculty.create_faculty();
-                                    Student._facultyList?.Add(faculty);
+                                    Faculty._facultyList?.Add(faculty);
                                     _gSwitch = 0;
                                     break;
                                 case "ssf":
@@ -56,13 +58,19 @@ class Labtwo
                                     _gSwitch = 0;
                                     break;
                                 case "uf":
-                                    for (int i = 0; i < Student._facultyList?.Count; i++)
+                                    for (int i = 0; i < Faculty._facultyList?.Count; i++)
                                     {
-                                        Console.WriteLine($"{Student._facultyList[i]}");
+                                        Console.WriteLine($"{Faculty._facultyList[i].name}");
                                     }
                                     _gSwitch = 0;
                                     break;
-                                
+                                case "gs":
+                                    Console.WriteLine("student id>");
+                                    string input = Console.ReadLine();
+
+                                    Student.graduate_student(input);
+                                    _gSwitch = 0;
+                                    break;
                                 case "bk":
                                     _gSwitch = 0;
                                     continue;
@@ -94,8 +102,9 @@ class Labtwo
                                 case "as":
                                     Student student = new Student();
                                     student.create_student();
+                                    Student._studentList?.Add(student);
                                     Faculty.add_student(student.outsideID);
-                                    _fSwitch = 0;
+                                        _fSwitch = 0;
                                     break;
                                 case "de":
                                     Faculty.list_students();
