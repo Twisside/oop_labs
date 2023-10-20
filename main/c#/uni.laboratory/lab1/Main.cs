@@ -14,7 +14,7 @@ class Labtwo
     private static int _sSwitch;
     
 
-    static void Main(String[] args) // im stupid, i don't know what i'm doing, i'm trying my best
+    static void Main4(String[] args) // im stupid, i don't know what i'm doing, i'm trying my best
     {
         
         Console.WriteLine("Welcome to the Student Manager!");
