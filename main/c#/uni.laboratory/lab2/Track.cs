@@ -1,28 +1,72 @@
-﻿
+﻿using System;
+using System.IO;
+
 namespace main.c_.uni.laboratory
 {
     class Track
     {
-        internal void tracking_change()
+        public void tracking_change_fail()
         {
-            using FileSystemWatcher watcher = new();
-
-            // specify the directory to monitor
-            watcher.Path = @"C:\Users\TwisSide\OneDrive - Technical University of Moldova\OOP\oop_labs\main\c#\uni.laboratory\lab2\Files";
-
-            watcher.Created += new FileSystemEventHandler(OnFileCreated);
-
+            FileSystemWatcher watcher = new FileSystemWatcher(@"C:\Users\TwisSide\Documents\Files_oop\Files");
+            
+            watcher.Filter = "*.*";
+            watcher.IncludeSubdirectories = true;
             watcher.EnableRaisingEvents = true;
+            
+            watcher.NotifyFilter = NotifyFilters.Attributes
+                                   | NotifyFilters.CreationTime
+                                   | NotifyFilters.DirectoryName
+                                   | NotifyFilters.FileName
+                                   | NotifyFilters.LastAccess
+                                   | NotifyFilters.LastWrite
+                                   | NotifyFilters.Security
+                                   | NotifyFilters.Size;
 
-            static void OnFileCreated(object source, FileSystemEventArgs e)
+            
+            watcher.Changed += OnChanged;
+            watcher.Created += OnCreated;
+            watcher.Deleted += OnDeleted;
+            watcher.Error += OnError;
+            
+
+            Console.WriteLine($"{watcher.Path}");
+            Console.Write("Press enter to exit.");
+            Console.Read();
+        }
+
+        static void OnChanged(object sender, FileSystemEventArgs e)
+        {
+            if (e.ChangeType != WatcherChangeTypes.Changed)
             {
-                Console.WriteLine("File Created: {0}", e.FullPath);
+                return;
             }
 
-            Console.WriteLine($"Create a new file {watcher.Filter} in the {watcher.Path} to see the event handler.");
-            Console.WriteLine("Press the return key to quit.");
+            Console.WriteLine($"Changed: {e.FullPath}");
+        }
 
-            Console.ReadLine();
+        static void OnCreated(object sender, FileSystemEventArgs e)
+        {
+            string value = $"Created: {e.FullPath}";
+            Console.WriteLine(value);
+        }
+
+        static void OnDeleted(object sender, FileSystemEventArgs e) =>
+            Console.WriteLine($"Deleted: {e.FullPath}");
+        
+
+        static void OnError(object sender, ErrorEventArgs e) =>
+            PrintException(e.GetException());
+
+        static void PrintException(Exception? ex)
+        {
+            if (ex != null)
+            {
+                Console.WriteLine($"Message: {ex.Message}");
+                Console.WriteLine("Stacktrace:");
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine();
+                PrintException(ex.InnerException);
+            }
         }
     }
 }

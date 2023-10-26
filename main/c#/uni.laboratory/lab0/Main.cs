@@ -1,6 +1,6 @@
 ﻿namespace main.c_.uni.laboratory.labone;
 
-class Labone
+class Lab0
 {
     private static void Main3(String[] args)
     {

@@ -1,10 +1,11 @@
 ﻿namespace main.c_.uni.laboratory;
 
-public class Lab3
+public class Lab2
 {
-    private static void Main(String[] args)
+    private static void Main6(String[] args)
     {
-        Track track = new Track();
-        track.tracking_change();
+        Check check = new Check();
+        check.tracking_change(); // it just doesnt see anythinggggg
+        // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     }
 }

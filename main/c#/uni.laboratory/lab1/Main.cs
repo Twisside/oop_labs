@@ -2,7 +2,7 @@
 
 namespace main.c_.uni.laboratory.labtwo;
 
-class Labtwo
+class Lab1
 {
     private static string? _entry;
     private static int _switchLoopBrake;
