@@ -41,11 +41,15 @@ public class Timerr
         {
             if (!changingFileState.ContainsKey(entry.Key))
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"{entry.Key} - New File");
+                Console.ResetColor();
             }
             else if (entry.Value > snapshotTime)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"{entry.Key} - Changed");
+                Console.ResetColor();
             }
         }
 
@@ -53,7 +57,9 @@ public class Timerr
         {
             if (!currentFileState.ContainsKey(entry.Key))
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"{entry.Key} - Deleted");
+                Console.ResetColor();
             }
         }
     }

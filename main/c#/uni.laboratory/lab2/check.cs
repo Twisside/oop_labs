@@ -70,6 +70,7 @@ public class Check
 
     private static void Status()
     {
+        Console.WriteLine($"Snapshot: {snapshotTime}");
         var currentFileState = Directory.GetFiles(folderPath)
             .ToDictionary(Path.GetFileName, file => File.GetLastWriteTime(file));
         
@@ -77,15 +78,11 @@ public class Check
         {
             if (!lastFileState.ContainsKey(entry.Key))
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"{entry.Key} - New File");
-                Console.ResetColor();
             }
             else if (entry.Value > snapshotTime)
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"{entry.Key} - Changed");
-                Console.ResetColor();
             }
         }
 
@@ -93,9 +90,7 @@ public class Check
         {
             if (!currentFileState.ContainsKey(entry.Key))
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"{entry.Key} - Deleted");
-                Console.ResetColor();
             }
         }
     }
