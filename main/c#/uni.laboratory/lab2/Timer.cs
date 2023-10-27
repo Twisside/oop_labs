@@ -11,7 +11,13 @@ public class Timerr
     public void live_tracking_change()
     {
         LiveCommit();
-        liveStatus();
+        while (true)
+        {
+            Thread.Sleep(5000);
+            LiveStatus();
+            LiveCommit();
+            
+        }
     }
     
     private static void LiveCommit()
@@ -26,7 +32,7 @@ public class Timerr
             .ToDictionary(Path.GetFileName, file => File.GetLastWriteTime(file));
     }
 
-    private static void liveStatus()
+    private static void LiveStatus()
     {
         var currentFileState = Directory.GetFiles(Check.folderPath)
             .ToDictionary(Path.GetFileName, file => File.GetLastWriteTime(file));

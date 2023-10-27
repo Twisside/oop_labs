@@ -72,20 +72,20 @@ public class Check
     {
         var currentFileState = Directory.GetFiles(folderPath)
             .ToDictionary(Path.GetFileName, file => File.GetLastWriteTime(file));
-
+        
         foreach (var entry in currentFileState)
         {
             if (!lastFileState.ContainsKey(entry.Key))
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"{entry.Key} - New File");
+                Console.ResetColor();
             }
             else if (entry.Value > snapshotTime)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"{entry.Key} - Changed");
-            }
-            else
-            {
-                Console.WriteLine($"{entry.Key} - No Changes");
+                Console.ResetColor();
             }
         }
 
@@ -93,21 +93,10 @@ public class Check
         {
             if (!currentFileState.ContainsKey(entry.Key))
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"{entry.Key} - Deleted");
+                Console.ResetColor();
             }
         }
     }
-    
-    // five sec thing =========================im=gonna=kill=myself=====================================================
-
-    public void StartTimer()
-    {
-        var timer = new Timer(_ =>
-        {
-            Commit();
-            Status();
-        }, null, 0, 5000);
-    }
-
-    // do the functions for the task
 }

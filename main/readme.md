@@ -18,9 +18,11 @@ In some places i nested stuff a bit too much which might be slightly painful to 
 ### Lab 3
 
 * x Add the code for checking the status of the directory.
-* Add the additional fancy stuff.
+* x Add the additional fancy stuff.
 
 So using some microsoft documentation, I found this neat inbuilt class "FileSystemWatcher" which fit perfectly for the job, except it just didn't work the way i expected it to, and by that i mean it didn't work at all (thanks microsoft)  
 I searched for some solutions but no luck so I gave up on the idea to use c# to my advantage and did the job the old fashion way.  
 Does it work? Yes, but at what cost?
-Why is threading so difficult to fucking implement ughhhhhhhhhh
+Why is threading so difficult to implement. Nevermind, every example i found online was overcomplicated for my case.(thanks again microsoft)
+
+Remark: I made the auto check thing in a different color so itis easier to read.
