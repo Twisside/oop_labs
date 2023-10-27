@@ -26,3 +26,5 @@ Does it work? Yes, but at what cost?
 Why is threading so difficult to implement. Nevermind, every example i found online was overcomplicated for my case.(thanks again microsoft)
 
 Remark: I made the auto check thing in a different color so itis easier to read.
+
+'else' is down. no way im making the submit in time. It's 11.08 PM when i'm finished with lab n2.
