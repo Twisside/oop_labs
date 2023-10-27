@@ -1,16 +1,14 @@
-﻿namespace main.c_.uni.laboratory;
+﻿using System.Diagnostics.CodeAnalysis;
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Collections.Generic;
+namespace main.c_.uni.laboratory.lab2;
 
 public class Check
 {
-    private static string folderPath = @"C:\Users\TwisSide\Documents\Files_oop\Files";
+    public static string folderPath = @"C:\Users\TwisSide\Documents\Files_oop\Files";
     private static DateTime snapshotTime;
     private static Dictionary<string, DateTime> lastFileState; // key: filename, value: last modified time
-
+    
+    
     public void tracking_change()
     {
         InitializeFileState();
@@ -51,7 +49,9 @@ public class Check
         snapshotTime = DateTime.Now;
         Console.WriteLine("Snapshot time updated!");
     }
-
+    
+    // i dont really need this, do i
+    
     private static void Info(string filename)
     {
         string fullPath = Path.Combine(folderPath, filename);
@@ -61,8 +61,6 @@ public class Check
             Console.WriteLine($"Extension: {Path.GetExtension(filename)}");
             Console.WriteLine($"Creation Time: {File.GetCreationTime(fullPath)}");
             Console.WriteLine($"Last Modified Time: {File.GetLastWriteTime(fullPath)}");
-
-            // Further checks for text, image or program files can be added similarly
         }
         else
         {
@@ -85,6 +83,10 @@ public class Check
             {
                 Console.WriteLine($"{entry.Key} - Changed");
             }
+            else
+            {
+                Console.WriteLine($"{entry.Key} - No Changes");
+            }
         }
 
         foreach (var entry in lastFileState)
@@ -95,4 +97,17 @@ public class Check
             }
         }
     }
+    
+    // five sec thing =========================im=gonna=kill=myself=====================================================
+
+    public void StartTimer()
+    {
+        var timer = new Timer(_ =>
+        {
+            Commit();
+            Status();
+        }, null, 0, 5000);
+    }
+
+    // do the functions for the task
 }

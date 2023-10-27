@@ -15,3 +15,12 @@ I couldn't check if everything works alright
 In some places i nested stuff a bit too much which might be slightly painful to be looked at
 , but at least i somewhat figured how these objects work, which i think matters the most
 
+### Lab 3
+
+* x Add the code for checking the status of the directory.
+* Add the additional fancy stuff.
+
+So using some microsoft documentation, I found this neat inbuilt class "FileSystemWatcher" which fit perfectly for the job, except it just didn't work the way i expected it to, and by that i mean it didn't work at all (thanks microsoft)  
+I searched for some solutions but no luck so I gave up on the idea to use c# to my advantage and did the job the old fashion way.  
+Does it work? Yes, but at what cost?
+Why is threading so difficult to fucking implement ughhhhhhhhhh

@@ -3,7 +3,8 @@ using System.IO;
 
 namespace main.c_.uni.laboratory
 {
-    class Track
+    class Track // my disappointment is unmeasurable and my day is ruined... actually the whole past week
+                // maybe it has something to do with the xml error stuff idk 
     {
         public void tracking_change_fail()
         {
