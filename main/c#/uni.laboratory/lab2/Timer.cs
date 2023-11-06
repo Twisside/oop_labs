@@ -1,26 +1,25 @@
-﻿
-using main.c_.uni.laboratory.lab2;
+﻿using main.c_.uni.laboratory.lab2;
 
 namespace main.c_.uni.laboratory;
 
-public class Timerr
+public class Timer : Check
 {
     private static Dictionary<string, DateTime> changingFileState; 
     private static DateTime snapshotTime;
-    
-    public void live_tracking_change()
+
+    public override void tracking_change()
     {
-        LiveCommit();
+        Commit();
         while (true)
         {
             Thread.Sleep(5000);
-            LiveStatus();
-            LiveCommit();
+            Status();
+            Commit();
             
         }
     }
     
-    private static void LiveCommit()
+    protected override void Commit()
     {
         InitializeFileState();
         snapshotTime = DateTime.Now;
@@ -32,9 +31,9 @@ public class Timerr
             .ToDictionary(Path.GetFileName, file => File.GetLastWriteTime(file));
     }
 
-    private static void LiveStatus()
+    private static void Status()
     {
-        var currentFileState = Directory.GetFiles(Check.folderPath)
+        var currentFileState = Directory.GetFiles(folderPath)
             .ToDictionary(Path.GetFileName, file => File.GetLastWriteTime(file));
 
         foreach (var entry in currentFileState)

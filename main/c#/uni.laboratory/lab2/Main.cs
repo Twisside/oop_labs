@@ -8,12 +8,10 @@ public class Lab2
     private static void Main(String[] args)
     {
         Check check = new Check();
-        Timerr timer = new Timerr();
+        Timer timer = new Timer();
         
-        Thread thread = new Thread(timer.live_tracking_change);
+        Thread thread = new Thread(timer.tracking_change);
         thread.Start();
-        check.tracking_change(); 
-        
-        
+        check.tracking_change();
     }
 }

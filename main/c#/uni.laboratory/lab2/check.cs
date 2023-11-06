@@ -4,12 +4,12 @@ namespace main.c_.uni.laboratory.lab2;
 
 public class Check
 {
-    public static string folderPath = @"C:\Users\TwisSide\Documents\Files_oop\Files";
+    protected static string folderPath = @"C:\Users\TwisSide\Documents\Files_oop\Files";
     private static DateTime snapshotTime;
     private static Dictionary<string, DateTime> lastFileState; // key: filename, value: last modified time
     
     
-    public void tracking_change()
+    public virtual void tracking_change()
     {
         InitializeFileState();
         snapshotTime = DateTime.Now;
@@ -17,7 +17,7 @@ public class Check
         string choice;
         do
         {
-            Console.WriteLine("Choose an option: commit, info, status, exit");
+            Console.WriteLine("Select an option: commit, info, status, exit");
             choice = Console.ReadLine();
 
             switch (choice)
@@ -37,13 +37,13 @@ public class Check
         } while (choice != "exit");
     }
 
-    private static void InitializeFileState()
+    private void InitializeFileState()
     {
         lastFileState = Directory.GetFiles(folderPath)
             .ToDictionary(Path.GetFileName, file => File.GetLastWriteTime(file));
     }
 
-    private static void Commit()
+    protected virtual void Commit()
     {
         InitializeFileState();
         snapshotTime = DateTime.Now;
@@ -68,7 +68,7 @@ public class Check
         }
     }
 
-    private static void Status()
+    private void Status()
     {
         Console.WriteLine($"Snapshot: {snapshotTime}");
         var currentFileState = Directory.GetFiles(folderPath)
@@ -83,6 +83,10 @@ public class Check
             else if (entry.Value > snapshotTime)
             {
                 Console.WriteLine($"{entry.Key} - Changed");
+            }
+            else
+            {
+                Console.WriteLine($"{entry.Key} - Not Changed");
             }
         }
 
