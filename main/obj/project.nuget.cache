@@ -1,14 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "4tDOWyL1DutQ5oDS2Hh8QeCXawN+THTapgBVhhryG3xC+DnBxt34gq7VWXBON23mEt2JExGkla2PmgroTPTk0Q==",
+  "dgSpecHash": "ZLApuFEpB4TJkQY1vzWr3uMP0LXna3qcicJC7Cr79K+6bJx1cOWeQhVKgobRevHrqN2fH6Y/XGu/fPjzRlgMsg==",
   "success": true,
   "projectFilePath": "C:\\Users\\TwisSide\\OneDrive - Technical University of Moldova\\OOP\\oop_labs\\main\\main.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TwisSide\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\TwisSide\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\TwisSide\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\TwisSide\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
     "C:\\Users\\TwisSide\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\TwisSide\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
+    "C:\\Users\\TwisSide\\.nuget\\packages\\system.drawing.common\\8.0.0\\system.drawing.common.8.0.0.nupkg.sha512",
     "C:\\Users\\TwisSide\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
     "C:\\Users\\TwisSide\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
     "C:\\Users\\TwisSide\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",

@@ -5,7 +5,7 @@ namespace main.c_.uni.laboratory;
 
 public class Lab2
 {
-    private static void Main2(String[] args)
+    private static void Main(String[] args)
     {
         Check check = new Check();
         Timer timer = new Timer();

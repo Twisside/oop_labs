@@ -1,20 +1,19 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Drawing;
 
 namespace main.c_.uni.laboratory.lab2;
 
-public class Check
+public class Check : ParentTrack
 {
-    protected static string folderPath = @"C:\Users\TwisSide\Documents\Files_oop\Files";
-    private static DateTime snapshotTime;
-    private static Dictionary<string, DateTime> lastFileState; // key: filename, value: last modified time
+    private static DateTime _snapshotTime;
+    private static Dictionary<string, DateTime>? _lastFileState; // key: filename, value: last modified time
     
     
-    public virtual void tracking_change()
+    public void tracking_change()
     {
         InitializeFileState();
-        snapshotTime = DateTime.Now;
+        _snapshotTime = DateTime.Now;
 
-        string choice;
+        string? choice;
         do
         {
             Console.WriteLine("Select an option: commit, info, status, exit");
@@ -27,8 +26,8 @@ public class Check
                     break;
                 case "info":
                     Console.WriteLine("Enter filename:");
-                    string filename = Console.ReadLine();
-                    Info(filename);
+                    string? filename = Console.ReadLine();
+                    if (filename != null) Info(filename);
                     break;
                 case "status":
                     Status();
@@ -37,16 +36,16 @@ public class Check
         } while (choice != "exit");
     }
 
-    private void InitializeFileState()
+    protected override void InitializeFileState()
     {
-        lastFileState = Directory.GetFiles(folderPath)
-            .ToDictionary(Path.GetFileName, file => File.GetLastWriteTime(file));
+        _lastFileState = Directory.GetFiles(FolderPath)
+                .ToDictionary(Path.GetFileName, file => File.GetLastWriteTime(file));
     }
 
-    protected virtual void Commit()
+    public override void Commit()
     {
         InitializeFileState();
-        snapshotTime = DateTime.Now;
+        _snapshotTime = DateTime.Now;
         Console.WriteLine("Snapshot time updated!");
     }
     
@@ -54,13 +53,29 @@ public class Check
     
     private static void Info(string filename)
     {
-        string fullPath = Path.Combine(folderPath, filename);
+        string extension = Path.GetExtension(filename);
+        string fullPath = Path.Combine(FolderPath, filename);
         if (File.Exists(fullPath))
         {
             Console.WriteLine($"Name: {filename}");
             Console.WriteLine($"Extension: {Path.GetExtension(filename)}");
             Console.WriteLine($"Creation Time: {File.GetCreationTime(fullPath)}");
             Console.WriteLine($"Last Modified Time: {File.GetLastWriteTime(fullPath)}");
+            if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+            {
+                
+                using(var image = new Bitmap(fullPath))
+                {
+                    var height = image.Height;
+                    var width = image.Width;
+                    Console.WriteLine("Dimentions:"+ height + "x" + width);
+                }
+            }else if (extension == ".txt")
+            {
+                var numberOfCharacters = File.ReadAllLines(fullPath).Sum(s => s.Length);
+                Console.WriteLine("Number of characters: " + numberOfCharacters);
+            }
+
         }
         else
         {
@@ -68,19 +83,19 @@ public class Check
         }
     }
 
-    private void Status()
+    protected override void Status()
     {
-        Console.WriteLine($"Snapshot: {snapshotTime}");
-        var currentFileState = Directory.GetFiles(folderPath)
+        Console.WriteLine($"Snapshot: {_snapshotTime}");
+        var currentFileState = Directory.GetFiles(FolderPath)
             .ToDictionary(Path.GetFileName, file => File.GetLastWriteTime(file));
         
         foreach (var entry in currentFileState)
         {
-            if (!lastFileState.ContainsKey(entry.Key))
+            if (!_lastFileState.ContainsKey(entry.Key))
             {
                 Console.WriteLine($"{entry.Key} - New File");
             }
-            else if (entry.Value > snapshotTime)
+            else if (entry.Value > _snapshotTime)
             {
                 Console.WriteLine($"{entry.Key} - Changed");
             }
@@ -90,7 +105,7 @@ public class Check
             }
         }
 
-        foreach (var entry in lastFileState)
+        foreach (var entry in _lastFileState)
         {
             if (!currentFileState.ContainsKey(entry.Key))
             {

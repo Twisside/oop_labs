@@ -13,3 +13,7 @@ C:\Users\TwisSide\OneDrive - Technical University of Moldova\OOP\oop_labs\main\o
 C:\Users\TwisSide\OneDrive - Technical University of Moldova\OOP\oop_labs\main\obj\Debug\net7.0\main.pdb
 C:\Users\TwisSide\OneDrive - Technical University of Moldova\OOP\oop_labs\main\obj\Debug\net7.0\main.genruntimeconfig.cache
 C:\Users\TwisSide\OneDrive - Technical University of Moldova\OOP\oop_labs\main\obj\Debug\net7.0\ref\main.dll
+C:\Users\TwisSide\OneDrive - Technical University of Moldova\OOP\oop_labs\main\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\TwisSide\OneDrive - Technical University of Moldova\OOP\oop_labs\main\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Users\TwisSide\OneDrive - Technical University of Moldova\OOP\oop_labs\main\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\TwisSide\OneDrive - Technical University of Moldova\OOP\oop_labs\main\obj\Debug\net7.0\main.csproj.CopyComplete
